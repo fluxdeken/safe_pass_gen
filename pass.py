@@ -5,7 +5,8 @@ parser = argparse.ArgumentParser(
     prog="Password generator",
     description="Program for creating cryptographically secure passwords")
 
-parser.add_argument("-len", "--length", type=int, default=16)      # option that takes a value
+parser.add_argument("-len", "--length", type=int, default=16)
+parser.add_argument("-m", "--mix", action="store_true")
 parser.add_argument("-l", "--lower", action="store_true")
 parser.add_argument("-u", "--upper", action="store_true")
 parser.add_argument("-n", "--numbers", action="store_true")
@@ -25,6 +26,9 @@ if args.numbers:
 
 if args.special:
     alphabet += "!@#$%^&*()-_=+[]{};:'\",.<>?/|\\`~"
+
+if args.mix:
+    alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()-_=+[]{};:'\",.<>?/|\\`~"
 
 if len(alphabet) == 0:
     print("No characters were chosen.")
